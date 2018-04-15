@@ -9,7 +9,7 @@ names=[]
 def insertdata(name):
 	for i in range(5):		
 		collection.insert({"id":i,"name":name[i]})
-		return
+	return
 import time,random
 import threading
 
@@ -48,14 +48,14 @@ class philosopher(threading.Thread):
 
 def DiningPhilosophers(names):
     forks = [threading.Lock() for n in range(5)]  
-    philosophers = [Philosopher(names[i], forks[i % 5], forks[(i + 1) % 5]) for i in range(5)]
+    philosophers = [philosopher(names[i], forks[i % 5], forks[(i + 1) % 5]) for i in range(5)]
     random.seed(507129)
-    Philosopher.running = True
+    philosopher.running = True
     for p in philosophers:
 	p.start()
     
     time.sleep(100)   
-    Philosopher.running = False 
+    philosopher.running = False 
     print ("Now we're finishing.")
     return
 
